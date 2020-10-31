@@ -44,6 +44,10 @@ body {
   background-color: darkgrey;
 }
 
+.buttonPressed {
+  background-color: darkgrey;
+}
+
 .button[data-button="eq"] {
   grid-column: 2 / span 2;
 }

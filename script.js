@@ -44,6 +44,8 @@ buttons.forEach((button) => {
 
 function buttonEffect(e) {
   this.classList.add("buttonEffect");
+  console.log("total = " + total);
+  console.log("currentValue = " + currentValue);
 }
 
 function buttonRemoveEffect(e) {
@@ -53,40 +55,57 @@ function buttonRemoveEffect(e) {
 //--
 
 //--the real magic happens here
-let currentValue = 0;
-let previousValue = 0;
 let currentOperation = "";
+let previousOperation = "";
+let firstOperation = true;
+let currentValue = 0;
+let total = 0;
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", function () {
     currentValue = currentValue * 10 + parseInt(this.dataset.button);
-    displayValue();
+    displayValue(currentValue);
+
+    operatorButtons.forEach((button) => {
+      button.classList.remove("buttonPressed");
+    });
   });
 });
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", function () {
+    previousOperation = currentOperation;
     currentOperation = this.dataset.button;
-    previousValue = currentValue;
+
+    if (firstOperation) total = currentValue;
+    if (!firstOperation)
+      total = operate(previousOperation, total, currentValue);
+
     currentValue = 0;
-    displayValue();
+    firstOperation = false;
+
+    button.classList.add("buttonPressed");
   });
 });
 
 eqButton.addEventListener("click", function () {
-  currentValue = operate(currentOperation, previousValue, currentValue);
-  displayValue();
+  total = operate(currentOperation, total, currentValue);
+  displayValue(total);
 });
 
 clearButton.addEventListener("click", function () {
+  currentOperation = "";
+  previousOperation = "";
+  firstOperation = true;
   currentValue = 0;
-  previousValue = 0;
-  displayValue();
+  total = 0;
+  displayValue(0);
 });
 
-function displayValue() {
-  display.textContent = currentValue;
+function displayValue(val) {
+  display.textContent = val;
 }
+
 //
 
 //--basic computation functions
