@@ -13,8 +13,11 @@ body {
 
 .display {
   border: 10px solid black;
-  height: 70px;
+  height: 50px;
   background-color: lightskyblue;
+  font-size: xx-large;
+  text-align: right;
+  padding: 10px;
 }
 
 .buttons {
