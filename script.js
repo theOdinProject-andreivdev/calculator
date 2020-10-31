@@ -103,7 +103,8 @@ clearButton.addEventListener("click", function () {
 });
 
 function displayValue(val) {
-  display.textContent = val;
+  val = Math.round((val + Number.EPSILON) * 100) / 100;
+  val = display.textContent = val;
 }
 
 //
@@ -139,6 +140,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b == 0) return 0;
   return a / b;
 }
 

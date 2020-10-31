@@ -1,23 +1,38 @@
 body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
   position: fixed;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: darkgrey;
 }
 
 .container {
-  border: 1px solid black;
+  border-radius: 5%;
+  border: 1px solid lightgrey;
+  background-color: whitesmoke;
+  padding: 5px;
 }
 
 .display {
-  border: 10px solid black;
+  border-radius: 5%;
   height: 50px;
-  background-color: lightskyblue;
+  border: 1px solid darkgrey;
+  background-color: whitesmoke;
   font-size: xx-large;
   text-align: right;
-  padding: 10px;
+  margin: 2px;
+  padding: 5px;
 }
 
 .buttons {
@@ -30,10 +45,14 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.operators {
+  display: grid;
+}
+
 .button {
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 5%;
+  padding: 5px 20px;
+  margin: 2px;
+  border-radius: 10%;
   transition-duration: 0.05s;
 
   background-color: lightgrey;
